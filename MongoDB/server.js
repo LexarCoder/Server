@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 
 function connectDB() {
+    // mongoose.connect('isme aapko mongoose ka link dalhna jo aapne database banaya h ok n a ')
     mongoose.connect('')
     .then(()=>{
         console.log("Database connected...");
