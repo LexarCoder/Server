@@ -1,9 +1,10 @@
 const express = require('express')
+const cors =  require('cors')
 const app = express()
 const noteModel = require('./models/note.models')
 
 app.use(express.json())
-
+app.use(cors())
 app.get('/',(req,res)=>{
     res.send("Hey Coder")
 })
