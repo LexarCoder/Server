@@ -8,7 +8,7 @@ function App() {
   // Fetch Notes
   const fetchNotes = () => {
     axios
-      .get("http://localhost:3000/api/notes")
+      .get("https://notes-create.onrender.com/api/notes")
       .then((res) => {
         setNotes(res.data.allNote || []);
       })
@@ -26,7 +26,7 @@ function App() {
     const { title, description } = e.target.elements;
 
     axios
-      .post("http://localhost:3000/api/notes", {
+      .post("https://notes-create.onrender.com/api/notes", {
         title: title.value,
         description: description.value,
       })
@@ -41,10 +41,12 @@ function App() {
 
   function handelDelete(noteId) {
     // console.log(noteId);
-    axios.delete("http://localhost:3000/api/notes/" + noteId).then((res) => {
-      console.log(res.data);
-      fetchNotes();
-    });
+    axios
+      .delete("https://notes-create.onrender.com/api/notes/" + noteId)
+      .then((res) => {
+        console.log(res.data);
+        fetchNotes();
+      });
   }
 
 
@@ -54,7 +56,7 @@ function App() {
 
   function updateDesc(id, newDescription) {
     axios
-      .patch("http://localhost:3000/api/notes/" + id, {
+      .patch("https://notes-create.onrender.com/api/notes/" + id, {
         description: newDescription,
       })
       .then(() => {
