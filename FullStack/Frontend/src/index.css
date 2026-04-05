@@ -1,45 +1,210 @@
-   * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-   }
+/* ===== Root Theme ===== */
+:root {
+   --bg: #0f172a;
+   --card: #111827;
+   --card-soft: #1f2937;
+   --border: #1e293b;
+   --text: #e5e7eb;
+   --subtext: #9ca3af;
 
-   body,
-   #root {
-      width: 100%;
-      height: 100%;
-   }
+   --primary: #6366f1;
+   --primary-soft: rgba(99, 102, 241, 0.15);
 
-   html {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      color: white;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   }
+   --success: #10b981;
+   --danger: #ef4444;
+}
 
-   .notes {
-      width: 100%;
-      height: 100%;
-      background: royalblue;
-      color: crimson;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: start;
-      align-items: start;
-      gap: 20px;
-      flex-wrap: wrap;
-   }
+/* ===== Global ===== */
+body {
+   background: radial-gradient(circle at top, #0f172a, #020617);
+   color: var(--text);
+   font-family: "Inter", sans-serif;
+   
+}
 
-   .note {
-      width: fit-content;
-      height: fit-content;
-      padding: 20px 40px;
-      background: rosybrown;
-      color: brown;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      border-radius: 10%;
+.container {
+   max-width: 1200px;
+   margin: auto;
+   padding: 24px;
+}
+
+/* ===== Form ===== */
+.note-form {
+   background: linear-gradient(145deg, #111827, #0b1220);
+   border: 1px solid var(--border);
+   padding: 24px;
+   border-radius: 16px;
+
+   box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+   display: flex;
+   flex-direction: column;
+   gap: 14px;
+   transition: 0.3s ease;
+}
+
+.note-form:hover {
+   transform: translateY(-2px);
+}
+
+.note-form input,
+.note-form textarea {
+   background: var(--card-soft);
+   border: 1px solid var(--border);
+   color: var(--text);
+   padding: 12px;
+   border-radius: 10px;
+   outline: none;
+}
+
+.note-form input:focus,
+.note-form textarea:focus {
+   border-color: var(--primary);
+   box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* 🔥 Textarea overflow FIX */
+.note-form textarea {
+   resize: none;
+   min-height: 100px;
+   max-height: 160px;
+   overflow-y: auto;
+}
+
+/* ===== Button ===== */
+.note-form button {
+   background: linear-gradient(135deg, #6366f1, #4f46e5);
+   border: none;
+   padding: 12px;
+   border-radius: 10px;
+   color: white;
+   cursor: pointer;
+   transition: 0.25s ease;
+}
+
+.note-form button:hover {
+   transform: translateY(-1px);
+}
+.note-form button:active {
+   transform: scale(0.9);
+}
+
+/* ===== Notes Grid ===== */
+.notes-section {
+   margin-top: 30px;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+   gap: 20px;
+}
+
+/* ===== Note Card ===== */
+.notes {
+   background: linear-gradient(145deg, #111827, #020617);
+   border: 1px solid var(--border);
+   border-radius: 16px;
+   padding: 18px;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+
+   transition: 0.3s ease;
+
+   box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.notes:hover {
+   transform: translateY(-4px) scale(1.01);
+   box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.7),
+      0 0 25px rgba(99, 102, 241, 0.12);
+}
+
+/* ===== Title overflow FIX ===== */
+.notes h1 {
+   font-size: 18px;
+   margin-bottom: 8px;
+
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+/* ===== Description clamp ===== */
+.notes p {
+   font-size: 14px;
+   color: var(--subtext);
+   margin-bottom: 15px;
+
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+}
+
+/* Hover expand */
+.notes:hover p {
+   -webkit-line-clamp: unset;
+}
+
+/* ===== Buttons ===== */
+.btn-group {
+   display: flex;
+   gap: 10px;
+}
+
+.notes button {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+
+   padding: 8px 10px;
+   border-radius: 8px;
+   border: none;
+   font-size: 13px;
+   cursor: pointer;
+   transition: 0.25s ease;
+}
+
+/* Update */
+.notes button:first-child {
+   background: rgba(16, 185, 129, 0.15);
+   color: #34d399;
+}
+
+.notes button:first-child:hover {
+   background: rgba(16, 185, 129, 0.25);
+   transform: scale(1.05);
+}
+
+/* Delete */
+.notes button:last-child {
+   background: rgba(239, 68, 68, 0.15);
+   color: #f87171;
+}
+
+.notes button:last-child:hover {
+   background: rgba(239, 68, 68, 0.25);
+   transform: scale(1.05);
+}
+
+/* ===== Scrollbar ===== */
+textarea::-webkit-scrollbar {
+   width: 6px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+   background: #374151;
+   border-radius: 10px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+   .notes-section {
+      grid-template-columns: 1fr;
    }
+}
